@@ -10,7 +10,7 @@ provides a fast and efficient way to edit something that
 otherwise could be difficult, while preserving the utf-8
 characters at all stages.
 
-There are three parts:  SQL, WSGI and HTML
+There are three parts:  WSGI, SQL, HTML
 
 WSGI
 -------------
