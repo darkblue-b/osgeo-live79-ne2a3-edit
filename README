@@ -23,6 +23,16 @@ WSGI
 You will need to configure your favorite web server with
 the wsgi extensions shown.
 
+Once installed, you can test if the WSGI is working with the
+50k utility, which simply returns 50k of zero. If that shows
+data with correct headers, you can proceed.
+
+The WSGI data adaptor will return an INFO page with details
+of the services available.  Roughly, the adaptor plus /dataset
+name will return a dataset in JSON, adding .csv will return it as
+CSV.  To get an individual record by pkey, the URL is always
+adaptor_name/dataset_name/pkey   .
+
 
 SQL
 -------------
