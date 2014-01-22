@@ -21,9 +21,24 @@ the wsgi extensions shown.
 
 SQL
 -------------
-The data is currently under revision. Included are the 
-schema definitions, using a postgres database role
-*ne2a3_editor*
+The goal is to carefully compare and contrast the original
+admin1 dataset, with a new, expanded admin1 version.
+
+Included here are the schema definitions, using a postgres 
+database role *ne2a3_editor*
+
+There is a three part heirarchy for the new admin1, defined
+in the SQL. The original admin1 layer is present also.
+
+*MASTER* as checked out from the natural_earth repository
+*jan14_web* is MASTER minus the geometry, and a pkey
+*jan14_edit* is the repository of all edit activity.
+
+As noted in the opening page, all edits are stored
+and can be reviewed individually for addition to the
+main set. The edit mechanism adds a timestamp and
+IP address for each edit.
+
 
 HTML
 -------------
