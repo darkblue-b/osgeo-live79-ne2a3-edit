@@ -1,0 +1,91 @@
+natural_earth_live79_alpha_dojo
+==============================
+
+
+The goal is to carefully compare and contrast the original
+admin1 dataset, with a new, expanded admin1 version for
+Natural Earth2.
+
+This git project is a complete admin1 dataset editor,
+using every international character set. The web interface
+provides a fast and efficient way to edit something that 
+otherwise could be difficult, while preserving the utf-8
+characters at all stages.
+
+There are three parts:  WSGI, SQL, HTML
+
+
+WSGI
+-------------
+
+You will need to configure your favorite web server with
+the wsgi extensions shown.
+
+Once installed, you can test if the WSGI is working with the
+50k utility, which simply returns 50k of zero. If that shows
+data with correct headers, you can proceed.
+
+The WSGI data adaptor will return an INFO page with details
+of the services available.  Roughly, the adaptor plus /dataset
+name will return a dataset in JSON, adding .csv will return it as
+CSV.  To get an individual record by pkey, the URL is always
+adaptor_name/dataset_name/pkey   .
+
+
+SQL
+-------------
+
+Included here are the schema definitions, currently using a  
+postgres database role *ne2a3_editor* as owner, and a read-only
+role *ne2_edit"  
+
+There is an implicit three part heirarchy, defined
+in the SQL. The original admin1 table is present also.
+
+*MASTER* the new admin1 as checked out from the natural_earth repository
+
+[https://github.com/nvkelso/natural-earth-vector](nvkelso/natural-earth-vector)
+
+> a "feature" of git is that you cannot check out only one directory
+> of a repository. The complete git repo is quite large, but we are
+> only interested in the original admin1, and the new expanded version
+> It turns out that github supports svn also. I used svn to checkout
+> only the data of interest.
+
+ 
+*jan14_web* is MASTER minus the geometry, and a convenient pkey
+*jan14_edit* is the repository of all edit activity.
+
+As noted in the opening page, all edits are stored seperately
+and can be reviewed individually for addition to the
+main set. The edit mechanism adds a timestamp and
+IP address for each edit.
+
+
+HTML
+-------------
+This kit is built on Dojo Toolkit 1.7.
+The include path at the top of each page must be 
+adjusted for your setup. Currently, in the main
+web server directory, there are two dirs.. 
+*dojo17* an alias to an svn checkout of Dojo 1.7
+*osgeo_live79* directory of web assets
+
+*Important*
+Each of 40+ fields have a regular expression 
+in the HTML page that validates the field.
+These regExs are under development, and
+are a major reason for the whole endeavor.
+
+
+
+TODO - better README
+--------------------
+
+
+
+--
+Brian M Hamlin
+OSGeo California Chapter
+blog.light42.com
+
