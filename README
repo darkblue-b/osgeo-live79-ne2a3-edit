@@ -1,8 +1,6 @@
 natural_earth_live79_alpha_dojo
 ==============================
 
-TODO - better README
---------------------
 
 The goal is to carefully compare and contrast the original
 admin1 dataset, with a new, expanded admin1 version for
@@ -68,6 +66,11 @@ Each of 40+ fields have a regular expression
 in the HTML page that validates the field.
 These regExs are under development, and
 are a major reason for the whole endeavor.
+
+
+
+TODO - better README
+--------------------
 
 
 
