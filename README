@@ -43,6 +43,16 @@ There is an implicit three part heirarchy, defined
 in the SQL. The original admin1 table is present also.
 
 *MASTER* the new admin1 as checked out from the natural_earth repository
+
+[https://github.com/nvkelso/natural-earth-vector](nvkelso/natural-earth-vector)
+
+> a "feature" of git is that you cannot check out only one directory
+> of a repository. The complete git repo is quite large, but we are
+> only interested in the original admin1, and the new expanded version
+> It turns out that github supports svn also. I used svn to checkout
+> only the data of interest.
+
+ 
 *jan14_web* is MASTER minus the geometry, and a convenient pkey
 *jan14_edit* is the repository of all edit activity.
 
