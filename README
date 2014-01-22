@@ -4,13 +4,18 @@ natural_earth_live79_alpha_dojo
 TODO - better README
 --------------------
 
-This project is a complete editor for a substantial dataset,
+The goal is to carefully compare and contrast the original
+admin1 dataset, with a new, expanded admin1 version for
+Natural Earth2.
+
+This git project is a complete admin1 dataset editor,
 using every international character set. The web interface
 provides a fast and efficient way to edit something that 
 otherwise could be difficult, while preserving the utf-8
 characters at all stages.
 
 There are three parts:  WSGI, SQL, HTML
+
 
 WSGI
 -------------
@@ -21,8 +26,6 @@ the wsgi extensions shown.
 
 SQL
 -------------
-The goal is to carefully compare and contrast the original
-admin1 dataset, with a new, expanded admin1 version.
 
 Included here are the schema definitions, using a postgres 
 database role *ne2a3_editor*
