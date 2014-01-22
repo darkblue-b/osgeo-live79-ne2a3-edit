@@ -27,17 +27,18 @@ the wsgi extensions shown.
 SQL
 -------------
 
-Included here are the schema definitions, using a postgres 
-database role *ne2a3_editor*
+Included here are the schema definitions, currently using a  
+postgres database role *ne2a3_editor* as owner, and a read-only
+role *ne2_edit"  
 
-There is a three part heirarchy for the new admin1, defined
-in the SQL. The original admin1 layer is present also.
+There is an implicit three part heirarchy, defined
+in the SQL. The original admin1 table is present also.
 
-*MASTER* as checked out from the natural_earth repository
-*jan14_web* is MASTER minus the geometry, and a pkey
+*MASTER* the new admin1 as checked out from the natural_earth repository
+*jan14_web* is MASTER minus the geometry, and a convenient pkey
 *jan14_edit* is the repository of all edit activity.
 
-As noted in the opening page, all edits are stored
+As noted in the opening page, all edits are stored seperately
 and can be reviewed individually for addition to the
 main set. The edit mechanism adds a timestamp and
 IP address for each edit.
