@@ -1,0 +1,123 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>NaturalEarth2 a3 Admin1 Editor</title>
+
+	<!-- required: a default dijit theme: -->
+	<link id="themeStyles" rel="stylesheet" href="../dojo17/dijit/themes/claro/claro.css"/>
+	
+	<!-- required: dojo.js -->
+	<script type="text/javascript" src="../dojo17/dojo/dojo.js"
+	data-dojo-config="parseOnLoad: true, isDebug: true"></script>
+	
+	<script type="text/javascript">
+	//dojo.require("dijit.dijit"); // optimize: load dijit layer
+	//dojo.require("dojo.data.ItemFileReadStore");
+
+	dojo.require("dijit.Tooltip");
+
+	dojo.require("dijit.Dialog");
+	dojo.require("dijit.Menu");
+	dojo.require("dijit.MenuItem");
+	dojo.require("dijit.PopupMenuItem");
+	dojo.require("dijit.MenuSeparator");
+
+	dojo.require("dijit.form.Button");
+	dojo.require("dijit.form.ComboButton");
+	dojo.require("dijit.form.ToggleButton");
+	
+	dojo.require("dojo.parser");      // scan page for widgets and instantiate them
+	
+	function myHandler(newValue){
+	        this._onChangeValue = newValue; // used by robot test file
+	        console.debug("onChange for id = " + this.id + ", value: " + newValue);
+	}
+	</script>
+
+	<script type="dojo/method" data-dojo-event="onReset">
+        return confirm('Press OK to reset widget values');
+    </script>
+	<style>
+		/* button related */
+		.box {
+			display: block;
+			text-align: center;
+		}
+		/* license checkbox related */
+	body { background-color: #F6952D; }
+	table { margin: 1em; padding: 1em; background-color: #fee6ce; }
+	#codename { color: #F6952D; }
+	#intro_p { font-family: sans-serif; }
+	</style>
+
+	<script type="text/javascript">
+
+//----------------------------------
+function initNavImages() {
+	return;
+}
+//----------------------------------
+function initPage() {
+	initNavImages();
+
+	//dojo.connect( dojo.byId("navSignInTD_id"), "onclick", 
+	//	function(e) {  navToSignIn(); } );
+		
+}
+//--------------------------------------
+dojo.addOnLoad( initPage );
+//----------------------------------
+    </script>
+
+
+
+</head>
+<body>
+
+
+<table summary="menu_test" width="590" cellpadding="3" rules="rows" align="left">
+
+	<tr>
+		<td><img src="ne2_logo.png"></td>
+	</tr>
+
+<tr>
+	<td id="navMenuContainer" class="dijitMenu" style="vertical-align:top; width:0;">
+
+		
+		<div id="navMenu" data-dojo-type="dijit.Menu" >
+			<div data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconPaste",
+				onClick:function(){ console.log("north_america!"); document.location = "show_states.html?loc=north_america"; }'>North America</div>
+
+			<div data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconPaste",
+				onClick:function(){ console.log("south_america!"); document.location = "show_states.html?loc=south_america"; }'>South America</div>
+
+			<div data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconPaste",
+				onClick:function(){ console.log("au_plus!"); document.location = "show_states.html?loc=au_plus"; }'>Australia plus</div>
+
+			<div data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconPaste",
+				onClick:function(){ console.log("india_plus!"); document.location = "show_states.html?loc=india_plus"; }'>India plus</div>
+
+			<div data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconPaste",
+				onClick:function(){ console.log("africa_plus!"); document.location = "show_states.html?loc=africa_plus"; }'>Africa plus</div>
+
+			<div data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconPaste",
+				onClick:function(){ console.log("eu_plus!"); document.location = "show_states.html?loc=eu_plus"; }'>EU plus</div>
+			<div data-dojo-type="dijit.MenuSeparator"></div>
+		</div>
+	</td>
+</tr>
+	<tr>
+		<td>natural_earth2a3 editor:  <p id="intro_p">A new set of admin1 states in the Natural Earth data set is under construction.
+Please contribute your edits to an existing record. <b>All edits are licensed as Public Domain.</b><br><br>
+Each field is locked by default. To contribute an edit, unlock the field, edit, validate using the validate
+button at the bottom of the form, then when the entry is valid, hit submit. All edits will be reviwed for inclusion into 
+the next published version. Thank you!<br></p>
+<pre>required: admin,name,latitude,longitude,adm1_code,pkey</pre>
+<span id="codename">graybeard2</span>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

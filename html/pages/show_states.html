@@ -1,0 +1,293 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>NaturalEarth2 a3 Admin1 States List</title>
+
+	<!-- required: a default dijit theme: -->
+	<link id="themeStyles" rel="stylesheet" href="../dojo17/dijit/themes/claro/claro.css"/>
+	
+	<!-- required: dojo.js -->
+	<script type="text/javascript" src="../dojo17/dojo/dojo.js"
+	data-dojo-config="parseOnLoad: true, isDebug: true"></script>
+	
+	<script type="text/javascript">
+	dojo.require("dojo.parser");      // scan page for widgets and instantiate them
+	</script>
+
+	<script type="dojo/method" data-dojo-event="onReset">
+        return confirm('Press OK to reset widget values');
+    </script>
+
+	<style>
+		/* button related */
+		.box {
+			display: block;
+			text-align: center;
+		}
+		/* license checkbox related */
+	body { background-color: #E6550D; }
+	label { margin-right: 0.80em; }
+	table { margin: 1em; padding: 1em; background-color: #fee6ce; }
+	thead { color: #DD3333; }
+	.navText6_hilite { color: #DDCCEE; font-weight: bold; }
+	.lng , .row_num, .int_code,
+	.lat { font-size: 0.8em; font-family: 'monospace';  }
+	
+	#sd_msg_id { color: #BB330D; }
+	</style>
+
+	<script type="text/javascript">
+
+//----------------------------------
+function initNavImages() {
+	return;
+}
+
+var gDstRegion = 'none';
+var gProjData;
+//----------------------------------
+function initPage() {
+	initNavImages();
+	
+	var re = /loc=(.*)/
+	var t_str = this.location.search;
+	if ( tRes = t_str.match( re ) ) {
+		gDstRegion = String(tRes[1]);
+		//console.log("this.location.search "+String(tRes[1])); 
+	}
+
+	//-------------
+	dojo.byId("sd_msg_id").innerHTML = "Building display list..."
+	dojo.byId("sd_msg_id").focus()
+	doRefreshProjData();
+	dojo.byId("sd_msg_id").innerHTML = "admin1 records -- " + gDstRegion
+
+
+	return;
+}
+
+//--------------------------------------
+dojo.addOnLoad( initPage );
+
+//---------------------------------------------------------------
+function doRefreshProjData() {
+	// get project info
+	dojo.xhrGet( {
+		url : '../ne2a3_werkzeug/ne2a3_jan14_mainlist/'+gDstRegion,
+		handleAs: "text",
+		timeout: 30000,
+		//preventCache: true,
+		sync: false,
+		
+		load : function(response, ioArgs) {
+			// is it json?
+			if ( response.charAt(0) != "[" ) {
+				//var tRespArr = response.split("\n");
+				//doError( tRespArr[0] );
+				console.log( "ERR: ", response, ioArgs);
+	
+				//gOver.Clear();
+				return response;
+			}
+			// a valid login returns the whole project
+			gProjData = eval( "(" + response + ")" );
+			
+
+			// now build the chart of events
+			updateChartContentDisplay();
+			
+			return response;
+		},
+
+		error : function(response, ioArgs) {
+			return response;
+		}
+	
+	});
+
+	return;
+}
+
+//--------------------------------------------------
+
+function handle_titlerow_click(e) {
+	return;
+}
+
+function handle_row_click(e) {
+	var tmp1;
+	//tmp1 = document.dir;
+	if ( e.ctrlKey ) {
+		document.location = '../ne2a3_werkzeug/ne2a3_jan14_admin1/' + String(e.target.id)
+	} else {
+		document.location = 'edit_state.html?rec=' + String(e.target.id)
+	}
+	
+	//document.location = "show_record.html?rec=" + String(e.target.id)
+	//tmp1 = e;
+	//tNode = dojo.byId( "seeOut2_id" )
+}
+//--------------------------------------
+
+//--------------------------------------
+function updateChartContentDisplay() {
+	// data is loaded and ready to go
+	// old chart is destroyed, draw away!
+	
+	if ( dojo.byId('chartTable_id') ) {
+		document.removeChild( dojo.byId('chartTable_id') );
+	}
+	var tTbl = document.createElement( "table");
+
+	dojo.attr( tTbl, "id", "chartTable_id");
+	dojo.attr( tTbl, "width", "640px");
+	//dojo.attr( tTbl, "border", "0");
+	//dojo.attr( tTbl, "margin", "12");
+	//dojo.attr( tTbl,  "cellpadding", "1");
+	//dojo.addClass( tTbl,  "respTable_class");
+
+	var tHead = document.createElement( "thead");
+	tRow1 = document.createElement( "tr" );
+	//------------------------------------
+	tCol0 = document.createElement( "td" );
+	dojo.connect(tCol0, "onclick", this, "handle_titlerow_click");
+	tCol0.innerHTML = String( '<b>pkey</b>' );
+	tRow1.appendChild( tCol0 );
+	//------------------------------------
+	tCol0 = document.createElement( "td" );
+	dojo.connect(tCol0, "onclick", this, "handle_titlerow_click");
+	tCol0.innerHTML = String( '<b>&nbsp;admin1_code&nbsp;</b>' );
+	tRow1.appendChild( tCol0 );
+	//------------------------------------
+	tCol0 = document.createElement( "td" );
+	dojo.connect(tCol0, "onclick", this, "handle_titlerow_click");
+	tCol0.innerHTML = String( '<b>name</b>' );
+	tRow1.appendChild( tCol0 );
+	//------------------------------------
+	tCol0 = document.createElement( "td" );
+	dojo.connect(tCol0, "onclick", this, "handle_titlerow_click");
+	tCol0.innerHTML = String( '<b>admin1_name&nbsp;&nbsp;</b>' );
+	tRow1.appendChild( tCol0 );
+	//------------------------------------
+	tCol0 = document.createElement( "td" );
+	dojo.connect(tCol0, "onclick", this, "handle_titlerow_click");
+	tCol0.innerHTML = String( '<b>lat</b>' );
+	tRow1.appendChild( tCol0 );
+	//------------------------------------
+	tCol0 = document.createElement( "td" );
+	dojo.connect(tCol0, "onclick", this, "handle_titlerow_click");
+	tCol0.innerHTML = String( '<b>lng</b>' );
+	tRow1.appendChild( tCol0 );
+	//------------------------------------
+	tHead.appendChild( tRow1);
+	tTbl.appendChild( tHead);
+	
+
+	// for IE
+	var tBdy = document.createElement( "tbody");
+	tTbl.appendChild( tBdy);
+	
+	var tRow1, tRow2, tRow3;
+	var tCol1, tCol2, tCol3;
+	var tActCnt = 0;
+	
+	
+	for ( var tInd=0; tInd < gProjData.length; tInd++ ) {
+
+		tActCnt++;
+		
+		tRow1 = document.createElement( "tr" );
+		//---------- PKEY
+		tCol1 = document.createElement( "td" );
+		dojo.addClass( tCol1, "row_num");
+		dojo.attr( tCol1, "id", gProjData[tInd][5] )
+		dojo.connect(tCol1, "onclick", this, "handle_row_click");
+		dojo.connect(tCol1, "onmouseenter", this, 
+		  function(e) {  dojo.addClass( e.target, "navText6_hilite" );  });
+		dojo.connect(tCol1, "onmouseleave", this, 
+		  function(e) {  dojo.removeClass( e.target, "navText6_hilite" );  });
+
+		//dojo.attr( tCol1, "rowspan", "3" );
+		tCol1.innerHTML = String( gProjData[tInd][5] );
+		
+		tRow1.appendChild( tCol1 );
+		//----------- INT_CODE
+		tCol2 = document.createElement( "td" );
+		dojo.addClass( tCol2, "int_code");
+		//dojo.attr( tCol2, "colspan", "2" );
+		tCol2.innerHTML = String( gProjData[tInd][0] );
+		
+		tRow1.appendChild( tCol2 );
+		//----------- NAME
+		tCol3 = document.createElement( "td" );
+		dojo.addClass( tCol3, "name");
+		//dojo.attr( tCol2, "colspan", "2" );
+		tCol3.innerHTML = String( gProjData[tInd][1] );
+		
+		tRow1.appendChild( tCol3 );
+		//----------- ADMIN_NAME
+		tCol4 = document.createElement( "td" );
+		dojo.addClass( tCol4, "admin");
+		//dojo.attr( tCol2, "colspan", "2" );
+		tCol4.innerHTML = String( gProjData[tInd][2] );
+		
+		tRow1.appendChild( tCol4 );
+		//----------- LAT
+		tCol5 = document.createElement( "td" );
+		dojo.addClass( tCol5, "lat");
+		//dojo.attr( tCol2, "colspan", "2" );
+		tCol5.innerHTML = String( gProjData[tInd][3] );
+		
+		tRow1.appendChild( tCol5 );
+		//----------- LNG
+		tCol6 = document.createElement( "td" );
+		dojo.addClass( tCol6, "lng");
+		//dojo.attr( tCol2, "colspan", "2" );
+		tCol6.innerHTML = String( gProjData[tInd][4] );
+		
+		tRow1.appendChild( tCol6 );
+
+		//*************************************
+
+		tBdy.appendChild( tRow1 );
+		
+	}
+	
+	if ( tActCnt == 0) {
+		tRow1 = document.createElement( "tr" );
+		//----------
+		tCol1 = document.createElement( "td" );
+		dojo.addClass( tCol1, "noEntriesMsg");
+		//dojo.attr( tCol1, "rowspan", "2" );
+		tCol1.innerHTML = "No Comments have been recorded yet.";
+		
+		tRow1.appendChild( tCol1 );	
+		tBdy.appendChild( tRow1 );
+	}
+	var tDivRef = dojo.byId('summary_disp_id');
+	tDivRef.appendChild( tTbl );
+	
+	//------------------------------
+	//dojo.byId("sumCntLabel_id").innerHTML = String(tActCnt);
+	
+	return;
+
+}
+
+//--------------------------------------
+dojo.addOnLoad( initPage );
+//----------------------------------
+    </script>
+
+
+</head>
+<body>
+
+<div id="summary_disp_id">
+	<span id="sd_msg_id"></span>
+	<!-- table here -->
+</div>
+
+
+</body>
+</html>
