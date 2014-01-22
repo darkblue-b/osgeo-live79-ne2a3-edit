@@ -249,6 +249,7 @@ function initPage() {
 	}
 	
 	dojo.connect( dojo.byId("wikip_link_id"), "onclick", w_click );
+	dojo.connect( dojo.byId("geonames_link_id"), "onclick", g_click );
 
 	//------------------------------------------------------------
 	var box;
@@ -276,7 +277,8 @@ function initPage() {
 	return;
 }
 
-//--------------------
+//-----------------------------
+// -- wikipedia search link
 function w_click(e) {
 
 	//------------------------------------------------------------
@@ -289,6 +291,22 @@ function w_click(e) {
 	tNewStr = encodeURIComponent( tNewStr )
 	var tElem = dojo.byId("wikip_link_id")
 	tElem.href = tTrgStr+tNewStr+tTrgEStr;
+}
+
+//-----------------------------
+// -- geonames search link
+function g_click(e) {
+
+	//------------------------------------------------------------
+	var tTrgStr = "http://www.geonames.org/advanced-search.html?q="
+	//var tTrgEStr = "&go=Go"
+	var tNewStr = ""
+	tName_TxtBox = dijit.byId( "name")
+	//tAdmin_TxtBox = dijit.byId( "admin")
+	tNewStr = tName_TxtBox.value; // + ", " + tAdmin_TxtBox.value;
+	tNewStr = encodeURIComponent( tNewStr )
+	var tElem = dojo.byId("geonames_link_id")
+	tElem.href = tTrgStr+tNewStr;
 }
 
 
@@ -1204,7 +1222,12 @@ id=gn_id
   regExp="[0-9]+"
   required="false"
   invalidMessage="invalid: gn_id"
-/> <br><em class="ex1_em">example:  5332921 </em><br>
+/> <br><em class="ex1_em">example:  5332921 </em>
+
+
+&nbsp;&nbsp;<a id="geonames_link_id" href="http://www.geonames.org/advanced-search.html?q=naturalearth" target="_blank"><b>G</b></a>
+
+<br>
 </div>
 
 
