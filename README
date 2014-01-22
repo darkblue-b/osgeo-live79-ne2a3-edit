@@ -34,6 +34,12 @@ web server directory, there are two dirs..
 *dojo17* an alias to an svn checkout of Dojo 1.7
 *osgeo_live79* directory of web assets
 
+*Important*
+Each of 40+ fields have a regular expression 
+in the HTML page that validates the field.
+These regExs are under development, and
+are a major reason for the whole endeavor.
+
 
 
 --
