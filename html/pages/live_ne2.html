@@ -87,6 +87,9 @@ dojo.addOnLoad( initPage );
 		
 		<div id="navMenu" data-dojo-type="dijit.Menu" >
 			<div data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconPaste",
+				onClick:function(){ console.log("eu_plus!"); document.location = "show_states.html?loc=eu_plus"; }'>EU plus</div>
+
+			<div data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconPaste",
 				onClick:function(){ console.log("north_america!"); document.location = "show_states.html?loc=north_america"; }'>North America</div>
 
 			<div data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconPaste",
@@ -101,9 +104,8 @@ dojo.addOnLoad( initPage );
 			<div data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconPaste",
 				onClick:function(){ console.log("africa_plus!"); document.location = "show_states.html?loc=africa_plus"; }'>Africa plus</div>
 
-			<div data-dojo-type="dijit.MenuItem" data-dojo-props='iconClass:"dijitEditorIcon dijitEditorIconPaste",
-				onClick:function(){ console.log("eu_plus!"); document.location = "show_states.html?loc=eu_plus"; }'>EU plus</div>
 			<div data-dojo-type="dijit.MenuSeparator"></div>
+
 		</div>
 	</td>
 </tr>
